@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Feature</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <div th:insert="fragments/backoffice/stylesheet::stylesheet"></div>
+
+  
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	
+	<!-- [ navigation menu ] start -->
+    <div th:insert="fragments/backoffice/navbar::navbar"></div>
+		<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<div th:insert="fragments/backoffice/header::header"></div>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+       <div th:insert="fragments/backoffice/breadcrumb::breadcrumb">
+        </div>
+<div class="page-wrapper">
+    <!-- Page header start -->
+    
+    <!-- Page header end -->
+    <!-- Page body start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Feature</h5>
+            </div>
+            <div class="card-body">
+                <form th:object="${feature}" th:action="@{'/backoffice/feature/saveOrUpdate'}" th:method="post">
+
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <p>Please Correct Errors Below</p>
+                    </div>
+    
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" th:class="${#fields.hasErrors('featureName')}  ? ' has-error' : ''">
+                                <label class="floating-label">Feature Name</label>
+                                <input  type="text" th:field="*{featureName}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('featureName')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('featureName')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <label class="floating-label" for="Status">Status</label>
+                            <div class="input-group mb-3">
+                                <select class="form-control input-border-bottom" th:field="*{status}" required="">
+								     <option th:each="c : ${T(com.example.realestate.models.enums.Status).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                </select>
+                                <div class="input-group-append">
+                                    <label class="input-group-text">Option</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group" th:class="${#fields.hasErrors('description')}  ? ' has-error' : ''">
+                                <label class="floating-label">Description</label>
+                                
+                                <textarea th:field="*{description}" class="form-control"  rows="3"></textarea>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <button type="submit" class="btn  btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+</div>
+</div>
+<div th:insert="fragments/backoffice/scripts::scripts"></div>
+
+   
+</body>
+
+</html>

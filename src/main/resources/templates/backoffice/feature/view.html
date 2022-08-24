@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Feature</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <div th:insert="fragments/backoffice/stylesheet::stylesheet"></div>
+
+  
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	
+	<!-- [ navigation menu ] start -->
+    <div th:insert="fragments/backoffice/navbar::navbar"></div>
+		<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<div th:insert="fragments/backoffice/header::header"></div>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="row">
+       <div th:insert="fragments/backoffice/breadcrumb::breadcrumb"> </div>
+
+       
+       <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Feature</h5>
+                </div>
+                <div class="card-body">
+                    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Delete Feature</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="mb-0">Do you want to delete this feature?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn  btn-secondary" data-dismiss="modal">Close</button>
+                                    <a th:href="@{'/backoffice/feature/delete/'+${feature.id}}" ><button type="button" class="btn  btn-danger">Delete</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <li><a class="nav-link text-left active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Main</a></li>
+                                <li><a class="nav-link text-left" id="v-pills-profile-tab"  th:href="@{'/backoffice/feature/edit/'+${feature.id}}" role="tab" aria-controls="v-pills-profile" aria-selected="false">Edit</a></li>
+                                <li><a class="nav-link text-left" id="v-pills-messages-tab" href="" data-toggle="modal" data-target="#deleteModal" role="tab" aria-selected="false">Delete</a></li>
+                                <li><a class="nav-link text-left"  href="/backoffice/feature/new"  role="tab" aria-selected="false"  >New</a></li>
+                                <li><a class="nav-link text-left"  href="/backoffice/feature"  role="tab" aria-selected="false"  >Features</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                    <div class="form-group form-group-default">
+                                        <label>ID</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.id}" readonly="">
+                                        
+                                    </div>
+                                    <div class="form-group form-group-default">
+                                        <label>Name</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.featureName}" readonly="">
+                                    </div>
+                                
+                                    <div class="form-group form-group-default">
+                                        <label>Status</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.status}" readonly="">
+                                        
+                                    </div>
+
+                                    <div class="form-group form-group-default">
+                                        <label>Description</label>
+                                        <br>
+                                        <textarea class="form-control" th:value="${feature.description}" readonly=""  rows="3"></textarea>
+                                        
+                                    </div>
+                                    <div class="form-group form-group-default">
+                                        <label>Created On</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.createdOn}" readonly="">
+                                        
+                                    </div>
+
+                                    <div class="form-group form-group-default">
+                                        <label>Created By</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.createdBy}" readonly="">
+                                        
+                                    </div>
+
+                                    <div class="form-group form-group-default">
+                                        <label>Updated On</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.updatedOn}" readonly="">
+                                        
+                                    </div>
+                                    <div class="form-group form-group-default">
+                                        <label>Updated By</label>
+                                        <br>
+                                        <input class="form-control" type="text" th:value="${feature.updatedBy}" readonly="">
+                                        
+                                    </div>
+                                
+            
+                                </div>
+                            
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div> 
+       
+
+</div>
+</div>
+<div th:insert="fragments/backoffice/scripts::scripts"></div>
+
+   
+</body>
+
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Property</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <div th:insert="fragments/backoffice/stylesheet::stylesheet"></div>
+
+    <script th:src="@{/backoffice/assets/js/datedropper-javascript.js}"></script> 
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	
+	<!-- [ navigation menu ] start -->
+    <div th:insert="fragments/backoffice/navbar::navbar"></div>
+		<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<div th:insert="fragments/backoffice/header::header"></div>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+       <div th:insert="fragments/backoffice/breadcrumb::breadcrumb">
+        </div>
+<div class="page-wrapper">
+    <!-- Page header start -->
+    
+    <!-- Page header end -->
+    <!-- Page body start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Property</h5>
+            </div>
+            <div class="card-body">
+               
+                <form th:object="${composite}" th:action="@{'/backoffice/property/saveOrUpdate'}" enctype="multipart/form-data" th:method="post">
+                    <!-- <div th:object="${addresses}"> -->
+                    <input type="hidden" th:field="*{address.id}"/>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.street')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Street</label>
+                                    <input  type="text" th:field="*{address.street}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.street')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.street')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.houseNumber')}  ? ' has-error' : ''">
+                                    <label class="floating-label">House Number</label>
+                                    <input  type="text" th:field="*{address.houseNumber}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.houseNumber')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.houseNumber')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.postalCode')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Post Index</label>
+                                    <input  type="text" th:field="*{address.postalCode}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.postalCode')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.postalCode')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.city')}  ? ' has-error' : ''">
+                                    <label class="floating-label">City</label>
+                                    <input  type="text" th:field="*{address.city}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.city')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.city')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.region')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Region</label>
+                                    <input  type="text" th:field="*{address.region}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.region')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.region')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.country')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Country</label>
+                                    <input  type="text" th:field="*{address.country}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.country')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.country')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.latitude')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Latitude</label>
+                                    <input  type="text" th:field="*{address.latitude}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.latitude')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.latitude')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" th:class="${#fields.hasErrors('address.longitude')}  ? ' has-error' : ''">
+                                    <label class="floating-label">Longitude</label>
+                                    <input  type="text" th:field="*{address.longitude}"  class="form-control" required>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address.longitude')}">
+                                        <span class="help-block" >
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('address.longitude')}" th:text="${err}"/>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                           
+                        </div>
+                        <div type="hidden" class="col-sm-4">
+                            <div class="form-group" th:class="${#fields.hasErrors('address.status')}  ? ' has-error' : ''">
+                                <label class="floating-label">Status</label>
+                                <div class="input-group mb-3">
+                                    <select  type="hidden" class="form-control input-border-bottom" th:field="*{address.status}" required="">
+                                         <option th:each="c : ${T(com.example.realestate.models.enums.Status).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                    </select>
+                                    <!-- <div class="input-group-append">
+                                        <button class="btn  btn-primary" type="button">Option</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                  
+
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <p>Please Correct Errors Below</p>
+                    </div>
+    
+                    <input type="hidden" th:field="*{property.id}"/>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.title')}  ? ' has-error' : ''">
+                                <label class="floating-label">Title</label>
+                                <input  type="text" th:field="*{property.title}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.title')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.title')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.purpose')}  ? ' has-error' : ''">
+                                <label class="floating-label">Purpose</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-control input-border-bottom" th:field="*{property.purpose}" required="">
+                                         <option th:each="c : ${T(com.example.realestate.models.enums.Purpose).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                    </select>
+                                    <!-- <div class="input-group-append">
+                                        <button class="btn  btn-primary" type="button">Option</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <label class="floating-label" for="Category">Category</label>
+                            <div class="input-group mb-3">
+                                <select class="form-control input-border-bottom" th:field="*{property.category}" required="">
+								     <option th:each="c : ${categoryList}" th:value="${c.id}" th:text="${c.categoryName}"></option>
+                                </select>
+                                <!-- <div class="input-group-append">
+                                    <button class="btn  btn-primary" type="button">Option</button>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.floor')}  ? ' has-error' : ''">
+                                <label class="floating-label">Floor</label>
+                                <input data-mask='0000'  type="text" th:field="*{property.floor}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.floor')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.floor')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <label class="floating-label" for="Status">Total Floor</label>
+                            <input data-mask='0000'  type="text" th:field="*{property.total_floor}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.total_floor')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.total_floor')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.size')}  ? ' has-error' : ''">
+                                <label class="floating-label">Size</label>
+                                <input data-mask='0000000000000'  type="text" th:field="*{property.size}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.size')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.size')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.price')}  ? ' has-error' : ''">
+                                <label class="floating-label">Price</label>
+                                <input data-mask="0000000000000000000000000000"  type="text" th:field="*{property.price}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.price')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.price')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.bedroom')}  ? ' has-error' : ''">
+                                <label class="floating-label">Bedroom</label>
+                                <input  data-mask='0000' type="text" th:field="*{property.bedroom}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.bedroom')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.bedroom')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <label class="floating-label" for="Status">Bathroom</label>
+                            <input  data-mask='0000' type="text" th:field="*{property.bathroom}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.bathroom')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.bathroom')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                 
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.available_from')}  ? ' has-error' : ''">
+                                <label class="floating-label">Available From</label>
+                                <div class="input-group date">
+                                    <input type="date"   class="form-control" required  autocomplete="off" th:field="*{property.available_from}"/>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.available_from')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.available_from')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                        
+
+                       
+                        <div class="col-sm-3">
+                            <label class="floating-label" for="Status">Availablle Until</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group date">
+                                    <input type="date"   class="form-control"  autocomplete="off" th:field="*{property.available_until}"/>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.available_until')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.available_until')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.year_built')}  ? ' has-error' : ''">
+                                <label class="floating-label">Built Year</label>
+                                <input data-mask='0000' type="text" th:field="*{property.year_built}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.year_built')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.year_built')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <label class="floating-label" for="Status">Garage</label>
+                            <div class="input-group mb-3">
+                                <select class="form-control input-border-bottom" th:field="*{property.garage}" required="">
+                                     <option th:each="c : ${T(com.example.realestate.models.enums.Availability).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                </select>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="floating-label" for="Status">Featured</label>
+                            <div class="input-group mb-3">
+                                <select class="form-control input-border-bottom" th:field="*{property.featured}" required="">
+								     <option th:each="c : ${T(com.example.realestate.models.enums.Featured).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                </select>
+                                <!-- <div class="input-group-append">
+                                    <label class="input-group-text">Option</label>
+                                </div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <label class="floating-label" for="Status">Pet Policy</label>
+                            <div class="input-group mb-3">
+                                <select class="form-control input-border-bottom" th:field="*{property.pet_policy}" required="">
+								     <option th:each="c : ${T(com.example.realestate.models.enums.Policy).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                </select>
+                               
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.status')}  ? ' has-error' : ''">
+                                <label class="floating-label">Status</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-control input-border-bottom" th:field="*{property.status}" required="">
+                                         <option th:each="c : ${T(com.example.realestate.models.enums.Status).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                    </select>
+                                    <!-- <div class="input-group-append">
+                                        <button class="btn  btn-primary" type="button">Option</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.feature')}  ? ' has-error' : ''">
+                                <label class="floating-label">Feature</label>
+                                <input  type="text" th:field="*{property.feature}"  class="form-control" required>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.feature')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.feature')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- <div class="form-group" th:class="${#fields.hasErrors('picture.feature')}  ? ' has-error' : ''"> -->
+                                <label class="floating-label">Images</label>
+                                <input type="file" name="files"      accept=".jpg, .png, image/jpeg, image/png" multiple>
+                                <!-- <div class="invalid-feedback" th:if="${#fields.hasErrors('property.feature')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.feature')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+                        
+                       
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group" th:class="${#fields.hasErrors('property.description')}  ? ' has-error' : ''">
+                                <label class="floating-label">Description</label>
+                                
+                                <textarea th:field="*{property.description}" class="form-control"  rows="3"></textarea>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('property.description')}">
+                                    <span class="help-block" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('property.description')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn  btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Page body end -->
+</div>
+</div>
+</div>
+<div th:insert="fragments/backoffice/scripts::scripts"></div>
+
+ <!-- datedropper init -->
+ <script>
+    new dateDropper({
+    selector: 'input[type="date"]'
+    });
+    </script>
+<script src="https://jsuites.net/v4/jsuites.js"></script>
+
+   
+</body>
+
+</html>

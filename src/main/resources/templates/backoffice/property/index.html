@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Features</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <div th:insert="fragments/backoffice/stylesheet::stylesheet"></div>
+
+  
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	
+	<!-- [ navigation menu ] start -->
+    <div th:insert="fragments/backoffice/navbar::navbar"></div>
+		<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<div th:insert="fragments/backoffice/header::header"></div>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+       <div th:insert="fragments/backoffice/breadcrumb::breadcrumb">
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="floating-label">Search</label>
+                                    <input  type="text"  class="form-control">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="floating-label">Status</label>
+                                    <div class="input-group mb-3">
+                                        <select class="form-control input-border-bottom">
+                                             <option th:each="c : ${T(com.example.realestate.models.enums.Status).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                        </select>
+                                        <!-- <div class="input-group-append">
+                                            <button class="btn  btn-primary" type="button">Option</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="floating-label">Category</label>
+                                    <select class="form-control input-border-bottom" required="">
+                                        <option th:each="c : ${categoryList}" th:value="${c.id}" th:text="${c.categoryName}"></option>
+                                   </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="floating-label">Purpose</label>
+                                    <div class="input-group mb-3">
+                                        <select class="form-control input-border-bottom" required="">
+                                            <option th:each="c : ${T(com.example.realestate.models.enums.Purpose).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                                       </select>
+                                        <!-- <div class="input-group-append">
+                                            <button class="btn  btn-primary" type="button">Option</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="floating-label">Bedroom</label>
+                                    <input  type="text"  class="form-control">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="floating-label">Available From</label>
+                                    <input  type="text"  class="form-control">
+                                </div>
+                            </div>
+                          
+                           
+                        </div>
+                        
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="floating-label">Price</label>
+                                    <input  type="text"  class="form-control">
+                                    
+                                </div>
+                            </div>
+                           
+                            
+                           
+                        </div>
+                        <div class="row">
+                           
+                            <div class="col-sm-4" >
+                               
+                                    <button type="submit" class="btn  btn-primary">Submit</button>
+                                
+                                    
+                               
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+           
+           
+            <div class="col-xl-12 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>Properties</h5>
+                        <div class="card-header-right">
+                            <div class="btn-group card-option">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="feather icon-more-horizontal"></i>
+                                </button>
+                                <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                    <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                    <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="chk-option">
+                                                <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-label"></span>
+                                                </label>
+                                            </div>
+                                            Check All
+                                        </th>
+                                        <th>Title</th>
+                                        <th>Created</th>
+                                        <th>Category</th>
+                                        <th>Purpose</th>
+                                        <th class="text-right">Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <div th:each="p:${properties}" >
+                                    <tr>
+                                        <td>
+                                            <div class="chk-option">
+                                                <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-label"></span>
+                                                </label>
+                                            </div>
+                                            <div class="d-inline-block align-middle">
+                                                
+                                                    <h6>[[${p.id}]]</h6>
+                                                  
+                                            </div>
+                                        </td>
+                                        <td>[[${p.title}]]</td>
+                                        <td>[[${p.createdOn}]]</td>
+                                        <td>[[${p.category.categoryName}]]</td>
+                                        <td>[[${p.purpose}]]</td>
+                                        
+
+                                         
+                                       
+                                        <td class="text-right">
+                                            [[${p.status}]]
+                                            <!-- <span th:switch="${cat.status}">
+                                                <i th:case="Apple" class="fas fa-check red-text"></i>
+                                                <i th:case="Orange" class="fas fa-times orange-text"></i>
+                                                <i th:case="active" class="fas fa-times yellow-text"></i>
+                                              </span>
+                                            <label class="badge badge-light-danger">Low</label> -->
+                                        </td>
+                                        <td class="text-right">
+                                            [[${p.status}]]
+                                            <!-- <span th:switch="${cat.status}">
+                                                <i th:case="Apple" class="fas fa-check red-text"></i>
+                                                <i th:case="Orange" class="fas fa-times orange-text"></i>
+                                                <i th:case="active" class="fas fa-times yellow-text"></i>
+                                              </span>
+                                            <label class="badge badge-light-danger">Low</label> -->
+                                        </td>
+                                        
+                                    </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+           
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+<div th:insert="fragments/backoffice/scripts::scripts"></div>
+
+   
+</body>
+
+</html>

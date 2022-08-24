@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="searcharea">
+
+            <div class="row">
+                <form class="callus">
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <input type="text" class="keyword-input" placeholder="Keyword (e.g. &#39;office&#39;)">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <select style="display: none;">
+                          <option selected="" value="any">Location</option>
+                          <option>All areas</option>
+                          <option>Bayonne </option>
+                          <option>Greenville</option>
+                          <option>Manhattan</option>
+                          <option>Queens</option>
+                          <option>The Heights</option>
+                        </select><div class="zelect"><div class="zelected">Location</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Location</li><li>All areas</li><li>Bayonne </li><li>Greenville</li><li>Manhattan</li><li>Queens</li><li>The Heights</li></ol></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <select style="display: none;">
+                          <option class="active">Property Type</option>
+                          <option>All areas</option>
+                          <option>Bayonne </option>
+                          <option>Greenville</option>
+                          <option>Manhattan</option>
+                          <option>Queens</option>
+                          <option>The Heights</option>
+                        </select><div class="zelect"><div class="zelected">Property Type</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Property Type</li><li>All areas</li><li>Bayonne </li><li>Greenville</li><li>Manhattan</li><li>Queens</li><li>The Heights</li></ol></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <select style="display: none;">
+                          <option class="active">Property Status</option>
+                          <option>All areas</option>
+                          <option>Bayonne </option>
+                          <option>Greenville</option>
+                          <option>Manhattan</option>
+                          <option>Queens</option>
+                          <option>The Heights</option>
+                        </select><div class="zelect"><div class="zelected">Property Status</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Property Status</li><li>All areas</li><li>Bayonne </li><li>Greenville</li><li>Manhattan</li><li>Queens</li><li>The Heights</li></ol></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row search-2">
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <div class="intro">
+                            <select style="display: none;">
+                              <option class="active">Min Beds</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                            </select><div class="zelect"><div class="zelected">Min Beds</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Beds</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <div class="intro">
+                            <select style="display: none;">
+                              <option class="active">Min Baths</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                            </select><div class="zelect"><div class="zelected">Min Baths</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Baths</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <input type="text" class="keyword-input" placeholder="Min Area (sq ft)">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <input type="text" class="keyword-input" placeholder="Max Area (sq ft)">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 bottom30">
+                    <div class="single-query-slider">
+                      <label>Price Range:</label>
+                      <div class="price text-right">
+                        <span>$</span>
+                        <div class="leftLabel">0</div>
+                        <span>to $</span>
+                        <div class="rightLabel">1500000</div>
+                      </div>
+                      <div data-range_min="0" data-range_max="1500000" data-cur_min="0" data-cur_max="1500000" class="nstSlider">
+                        <div class="bar" style="left: 0px; width: 655px;"></div>
+                        <div class="leftGrip" tabindex="0" style="left: 0px;"></div>
+                        <div class="rightGrip" tabindex="0" style="left: 635px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+
+                <form class="callus" id="search_form" method="get" action="http://127.0.0.1:8000/rentals/search/">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="PuFDsKREcUmtsHk89W9DMadOArv8tV8JtoMCVtiUqWsrXt8wbWlZmq3RY4S1g77i">
+                      <div class="row">
+                       
+                          <div class="col-sm-6">
+                            <div class="single-query form-group">
+                              <input type="text" name="query" id="query" class="keyword-input" placeholder="Keyword (e.g. &#39;office&#39;)">
+                            </div>
+                          </div>
+                        
+                          <div class="col-sm-6">
+                            <div class="single-query form-group">
+                              <div class="intro">
+                                 <select id="location" ,="" name="location" style="display: none;">
+                                  <option value="" selected="">Location</option>
+                                  <option value="">All areas</option>
+                                  
+                                  
+                                </select><div class="zelect"><div class="zelected">Location</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Location</li><li>All areas</li></ol></div></div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="col-sm-6">
+                            <div class="single-query form-group">
+                              <div class="intro">
+                                <select style="display: none;">
+                                  <option class="active">Property Type</option>
+                                  <option>All areas</option>
+                                  <option>Bayonne </option>
+                                  <option>Greenville</option>
+                                  <option>Manhattan</option>
+                                  <option>Queens</option>
+                                  <option>The Heights</option>
+                                </select><div class="zelect"><div class="zelected">Property Type</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Property Type</li><li>All areas</li><li>Bayonne </li><li>Greenville</li><li>Manhattan</li><li>Queens</li><li>The Heights</li></ol></div></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="single-query form-group">
+                              <div class="intro">
+                                <select id="category" name="category" style="display: none;">
+                                  <option value="" class="active">Property Status</option>
+                                  <option>All Category</option>
+                                  
+                                </select><div class="zelect"><div class="zelected">Property Status</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Property Status</li><li>All Category</li></ol></div></div>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="col-sm-6">
+                            <div class="single-query form-group">
+                              <div class="intro">
+                                <input type="date" class="form-control" id="available_from" name="available_from">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="row search-2">
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                  <div class="intro">
+                                    <select id="min_bed" ,="" name="min_bed" style="display: none;">
+                                      <option value="0">Min Beds</option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                    </select><div class="zelect"><div class="zelected">Min Beds</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Beds</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                  <div class="intro">
+                                    <select id="min_bath" ,="" name="min_bath" style="display: none;">
+                                      <option value="0" class="active">Min Baths</option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                    </select><div class="zelect"><div class="zelected">Min Baths</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Baths</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            
+                        <div class="col-sm-6">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                  <input type="text" id="min_area" name="min_area" class="keyword-input" placeholder="Min Area (sq m)">
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                  <input id="max_area" name="max_area" type="text" class="keyword-input" placeholder="Max Area (sq m)">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            
+            
+                            <div class="col-sm-6" style="display: none;">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                    <input type="text" id="min_price" style="display: none;" name="min_price" class="keyword-input" placeholder="Min price ">
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="single-query form-group">
+                                 
+                                     <input type="text" id="max_price" style="display: none;" name="max_price" class="keyword-input" placeholder="Max price">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            
+                     
+                         
+                          <div class="col-sm-12 bottom30">
+                            <div class="single-query-slider">
+                              <label>Price Range:</label>
+                              <div class="price text-right">
+                                <span>€</span>
+                                <div class="leftLabel">0</div>
+                                <span>to €</span>
+                                <div class="rightLabel">100</div>
+                              </div>
+                           
+                              <div data-range_min="0" data-range_max="100" data-cur_min="0" data-cur_max="100" class="nstSlider">
+                                <div class="bar" style="left: 0px; width: 20px;"></div>
+                                <div class="leftGrip" tabindex="0" style="left: 0px;"></div>
+                                <div class="rightGrip" tabindex="0" style="left: 0px;"></div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="group-button-search margin40">
+                            <a data-toggle="collapse" href="http://127.0.0.1:8000/rentals/.html" class="more-filter">
+                              <i class="fa fa-plus text-1 bg-color-yello" aria-hidden="true"></i>
+                              <i class="fa fa-minus text-2 hide bg-color-yello" aria-hidden="true"></i>
+                              <div class="text-1">Show more search options</div>
+                              <div class="text-2 hide">less more search options</div>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="col-sm-6 form-group top20 text-right">
+                             <input class="btn-blue border_radius" type="submit" value="Search">
+            
+                        </div>
+                      </div>
+                      <div class="search-propertie-filters collapse">
+                        <div class="container-2 bottom30">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Washer and Dryer</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Washer and Dryer</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Washer and Dryer</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Balcony</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Balcony</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Balcony</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Storage</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Storage</span>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                              <div class="search-form-group white">
+                                <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                                <span>Storage</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </form>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="group-button-search margin40">
+                    <a data-toggle="collapse" href="http://wahabali.com/work/castle/.search-propertie-filters" class="more-filter">
+                      <i class="fa fa-plus text-1 bg-color-yello" aria-hidden="true"></i>
+                      <i class="fa fa-minus text-2 bg-color-yello hide" aria-hidden="true"></i>
+                      <div class="text-1">Show more search options</div>
+                      <div class="text-2 hide">less more search options</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-group top20 text-right">
+                  <button type="submit" class="btn-blue border_radius">Search</button>
+                </div>
+              </div>
+              <div class="search-propertie-filters collapse" aria-expanded="false" style="height: 0px;">
+                <div class="container-2 bottom30">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+        </div>
+    </body>
+</html>

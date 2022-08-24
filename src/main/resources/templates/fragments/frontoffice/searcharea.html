@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="searcharea">
+
+            <div class="row">
+                <form class="callus" th:action="@{/list}" method="get">
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <input type="text" th:value="${searchQuery}" name="searchQuery" id="searchQuery"  class="keyword-input" placeholder="Keyword (e.g. &#39;office&#39;)">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <input type="text" id="address"  name="address" th:value="${address}" class="keyword-input" placeholder="Address (e.g. &#39;Berlin&#39;)">
+                   
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <select class="form-control input-border-bottom" th:value="type" name="type" id="type"  >
+                          <!-- <option class="active">Property Type</option> -->
+                          <option value="">Type</option>
+                          <option th:each="c : ${categoryList}" th:value="${c.id}" th:text="${c.categoryName}"></option>
+                          
+                        </select>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <select class="form-control input-border-bottom" id="purpose" name="purpose" th:value="${purpose}" required="">
+                          <option th:each="c : ${T(com.example.realestate.models.enums.Purpose).values()}" th:value="${c.name()}" th:text="${c.name()}"></option>
+                        </select>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="single-query form-group">
+                      <div class="intro">
+                        <input type="date" class="form-control" id="availableFrom" th:value="${available_from}" name="available_from">
+                        </div>
+                    </div>
+                  </div>
+
+                  
+                
+                  <div class="col-sm-6">
+                    <div class="row search-2">
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <div class="intro">
+                            <select id="min_bed" ,="" name="min_bed" style="display: none;">
+                              <option value="0">Min Beds</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                            </select><div class="zelect"><div class="zelected">Min Beds</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Beds</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                          </div>
+
+                         
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <div class="intro">
+                            <select style="display: none;">
+                              <option class="active">Min Baths</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                            </select><div class="zelect"><div class="zelected">Min Baths</div><div class="dropdown" style="display: none;"><div class="zearch-container"><input class="zearch"><div class="no-results" style="display: none;"></div></div><ol><li class="current">Min Baths</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <input type="text" name="minArea" id="minArea" th:value="${minArea}" class="keyword-input" placeholder="Min Area (sq ft)">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="single-query form-group">
+                          <input type="text" name="maxArea" id="maxArea" th:value="${maxArea}" class="keyword-input" placeholder="Max Area (sq ft)">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 bottom30">
+                    <div class="single-query-slider">
+                      <label>Price Range:</label>
+                      <div class="price text-right">
+                        <span>$</span>
+                        <div class="leftLabel">[[${minPrice}]] <span th:text="${minPrice}">0</span></div>
+                        <span>to $</span>
+                        <div class="rightLabel">[[${maxPrice}]] <span th:text="${maxPrice}">0</span></div>
+                      </div>
+                      <div data-range_min="${minPrice}" data-range_max="[(${maxPrice})]" data-cur_min="${minPrice}" data-cur_max="[(${maxPrice})]" class="nstSlider">
+                        <div class="bar" style="left: 0px; width: 655px;"></div>
+                        <div class="leftGrip" tabindex="0" style="left: 0px;"></div>
+                        <div class="rightGrip" tabindex="0" style="left: 635px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 form-group top20 text-right">
+                    <button type="submit" class="btn-blue border_radius">Search</button>
+                  </div>
+                </form>
+
+              
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="group-button-search margin40">
+                    <a data-toggle="collapse" href="http://wahabali.com/work/castle/.search-propertie-filters" class="more-filter">
+                      <i class="fa fa-plus text-1 bg-color-yello" aria-hidden="true"></i>
+                      <i class="fa fa-minus text-2 bg-color-yello hide" aria-hidden="true"></i>
+                      <div class="text-1">Show more search options</div>
+                      <div class="text-2 hide">less more search options</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-group top20 text-right">
+                  <button type="submit" class="btn-blue border_radius">Search</button>
+                </div>
+              </div>
+              <div class="search-propertie-filters collapse" aria-expanded="false" style="height: 0px;">
+                <div class="container-2 bottom30">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Washer and Dryer</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Balcony</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="search-form-group white">
+                        <div class="check-box"><i><input type="checkbox" name="check-box"></i></div>
+                        <span>Storage</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+        </div>
+    </body>
+</html>

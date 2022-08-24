@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://wahabali.com/work/castle/listing4.html# -->
+<html lang="en" class="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Castle | Listing</title>
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/reality-icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/bootsnav.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/jquery.fancybox.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/owl.transitions.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/cubeportfolio.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/settings.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/range-Slider.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/search.css}">
+<link rel="stylesheet" type="text/css" th:href="@{frontoffice/css/style.css}">
+
+<link rel="icon" th:href="@{frontoffice/images/icon.png}">
+<style type="text/css">.fancybox-margin{margin-right:0px;}</style>
+<body>
+
+
+<!--Loader-->
+<!--<div class="loader">-->
+<!--  <div class="span">-->
+<!--    <div class="location_indicator"></div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--Loader-->
+
+<!--allProperties-->
+
+
+<!--Header-->
+<div th:insert="fragments/frontoffice/header::header"></div>
+
+<!--Header Ends-->
+
+
+<style type="text/css">
+
+  #visible {
+    display: inline-block;
+    width: 150px;
+    height: 300px;
+    overflow-y: scroll;
+  }
+
+</style>
+<!-- Listing Start -->
+<section id="listing_layout" class="listing1 maplisting">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="ol-md-6 col-sm-6 col-xs-12 listing_map">
+        <div id="banner-map">
+          <div class="row property-list-area property-list-map-area">
+
+            <div class="property-list-map">
+              <div id="property-listing-map" class="multiple-location-map" style="width:100%; top:0; bottom:0;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ol-md-6 col-sm-6 col-xs-12 pull-right">
+        <br>
+        <div class="property-query-area top20">
+          <div th:insert="fragments/frontoffice/searcharea::searcharea">
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="text-uppercase bottom20">Properties listings</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>
+<!--                  {% with all_properties.count as total_results %}Found {{ total_results }} result{{ total_results|pluralize }}-->
+<!--                  {% endwith %}-->
+                </h3></div>
+            </div>
+          </div>
+
+
+            <table>
+                <span th:each="prop :${allProperties}">
+                    <td>
+                        <span class="tag pull-right">[[${prop.price}]] Pro Monat</span>
+
+<!--                        <tr th:each="p: ${prop.pictures}">-->
+<!--                            a-->
+<!--&lt;!&ndash;                            <p th:text="${p}"></p>&ndash;&gt;-->
+<!--                        </tr>-->
+                    <td>
+                </span>
+            </table>
+          <div id="property-list">
+            <div id="cover-spin"> </div>
+              <div th:insert="fragments/frontoffice/properties::properties"></div>
+
+            <div class="row"></div>
+
+          </div>
+
+
+
+          <script src="https://api-maps.yandex.ru/2.1/?apikey=cc06771e-7a07-4638-8572-f6bc9dc3d361&lang=en_US" type="text/javascript"></script>
+
+<!--            "pageNumber":pageNumber,-->
+<!--            "pageSize":pageSize,-->
+<!--            "sortField": sortField,-->
+<!--            "sortDirection": sortDirection,-->
+<!--            "searchQuery":searchQuery,-->
+<!--            "address":searchAddress,-->
+<!--            "purpose": purpose,-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                  var pageNumber=1;
+                  var pageSize=1;
+                  var pageField="id";
+                  var sortDirection="desc";
+                  var searchQuery="new";
+                  var searchAddress="germany";
+                  var purpose="rent";
+                  var type="apartment";
+                  // var availableFrom= "2022-07-15T11:06:48.738+00:00";
+                  var minArea=1;
+                  var maxArea=100;
+                  var searchData = {};
+
+
+                    searchData["pageNumber"] = JSON.stringify(pageNumber);
+                    searchData["pageSize"] = JSON.stringify(pageSize);
+                    searchData["pageField"] = JSON.stringify(pageField);
+                    searchData["sortDirection"] = JSON.stringify(sortDirection);
+                    searchData["searchQuery"] = JSON.stringify(searchQuery);
+                    searchData["searchAddress"] = JSON.stringify(searchAddress);
+                    searchData["purpose"] = JSON.stringify(purpose);
+                    searchData["type"] = JSON.stringify(type);
+                    searchData["minArea"] = JSON.stringify(minArea);
+                    searchData["maxArea"] = JSON.stringify(maxArea);
+
+
+
+                    $.ajax({
+                          type : "GET",
+                          contentType : "application/json; charset=utf-8",
+                          url : "/rest/loadCoordinates",
+                          data :searchData,
+                      // JSON.stringify(searchData),
+                          cache : false,
+                          timeout : 600000,
+                        beforeSend: function() {
+                            document.getElementById("property-container").style.visibility = "hidden";
+                        },
+
+                        success: function (data) {
+                            $("#property-list").html(data);
+                            console.log(data);
+                            alert("rudopo success");
+                        },
+
+                          error : function(e) {
+                                // alert("failß");
+                                console.log(e);
+                            }
+                        });
+
+                });
+            </script>
+            <script type="text/javascript" th:inline="javascript" >
+                  var geoObjectsQuery;
+                  var map;
+                  ymaps.ready(function () {
+                  var map = new ymaps.Map('property-listing-map', {
+                            center: [55.751574, 37.573856],
+                            zoom: 9,
+                            behaviors: ['default', 'scrollZoom']
+                          }, {
+                            searchControlProvider: 'yandex#search'
+                          }),
+
+                          clusterer = new ymaps.Clusterer({
+                            preset: 'islands#invertedVioletClusterIcons',
+                            groupByCoordinates: false,
+                            clusterDisableClickZoom: true,
+                            clusterHideIconOnBalloonOpen: false,
+                            geoObjectHideIconOnBalloonOpen: false
+                          }),
+
+                          getPointData = function (index) {
+                            return {
+                              balloonContentHeader: '<font size=3><b><a target="_blank" href="https://yandex.com">Your link can be here</a></b></font>',
+                              balloonContentBody: '<p>Your name: <input name="login"></p><p>The phone in the format 2xxx-xxx:  <input></p><p><input type="submit" value="Send"></p>',
+                              balloonContentFooter: '<font size=1>Information provided by: placemark </font> balloon <strong> ' + index + '</strong>',
+                              clusterCaption: 'placemark <strong>' + index + '</strong>'
+                            };
+                          },
+
+                          getPointOptions = function () {
+                            return {
+                              preset: 'islands#violetIcon'
+                            };
+                          },
+
+                          geoObjects = [];
+
+
+                  var v=-1;
+                  /*[# th:each="n : ${allProperties}"]*/
+
+                  geoObjects[v] = new ymaps.Placemark(["[(${n['address']['latitude']})]", "[(${n['address']['longitude']})]"], getPointData("[(${n['id']})]", "/view/[(${n['id']})]", "/view/[(${n['id']})]", "[(${n['price']})]", "[(${n['purpose']})]",
+                          "[(${n['featured']})]", "[(${n['title']})]",  "[(${n['featured']})]", "[(${n['address']['houseNumber']})]",
+                          "[(${n['address']['street']})]", "[(${n['address']['city']})]", "[(${n['address']['region']})]",
+                          "[(${n['address']['country']})]", "[(${n['size']})]", "[(${n['bedroom']})]",
+                          "[(${n['bathroom']})]",  "[(${n['garage']})]"), getPointOptions());
+                  v++;
+
+                  /*[/]*/
+
+
+                  clusterer.options.set({
+                    gridSize: 80,
+                    clusterDisableClickZoom: true
+                  });
+
+
+                  clusterer.add(geoObjects);
+                  map.geoObjects.add(clusterer);
+
+
+
+                  map.setBounds(clusterer.getBounds(), {
+                    checkZoomRange: true
+                  });
+
+
+                    map.events.add('boundschange', function() {
+
+                      var url = "/rest/loadBorderChangeData";
+                      // var url1="/rest/loadCoordinates"
+                      var searchData = {};
+                      var pageNumber=1;
+                      var pageSize=4;
+                      var sortField="id";
+                      var sortDirection="desc";
+
+                      var searchQuery="";
+                      var searchAddress="";
+                      var availableFrom="";
+
+                      if(document.getElementById('searchQuery').value!==""){
+                          searchQuery=document.getElementById('searchQuery').value;
+                          searchData["searchQuery"] = JSON.stringify(searchQuery);
+
+                      }
+                      else{
+                          searchData["searchQuery"] = "";
+                      }
+
+                      if(document.getElementById('address').value!==""){
+                          searchAddress=document.getElementById('address').value;
+                          searchData["searchAddress"] = JSON.stringify(searchAddress);
+                        }
+                      else{
+                          searchData["searchAddress"] = "";
+                      }
+                      if(document.getElementById('address').value!==""){
+                            searchAddress=document.getElementById('address').value;
+                            searchData["searchAddress"] = JSON.stringify(searchAddress);
+                        }
+                      else{
+                            searchData["searchAddress"] = "";
+                        }
+
+                      if(document.getElementById('availableFrom').value!==""){
+                            availableFrom=document.getElementById('availableFrom').value;
+                            searchData["searchAddress"] = JSON.stringify(availableFrom);
+                        }
+                        else{
+                            searchData["availableFrom"] = "";
+                        }
+
+
+                        // document.getElementById('availableFrom').value
+
+
+                      var purpose=$( "#purpose" ).val();
+                      var type=$( "#type" ).val();
+
+                      var minArea=1;
+                      var maxArea=100;
+
+                      var borders=map.getBounds();
+                        // latitude1=lists[0][0]
+                        // latitude2=lists[1][0]
+                        // longitude1=lists[0][1]
+                        // longitude2=lists[1][1]
+                      var latitude1=borders[0][0];
+                      var latitude2=borders[1][0];
+                      var longitude1=borders[0][1];
+                      var longitude2=borders[1][1];
+
+
+                      searchData["latitude1"] = JSON.stringify(latitude1);
+                      searchData["latitude2"] = JSON.stringify(latitude2);
+                      searchData["longitude1"] = JSON.stringify(longitude1);
+                      searchData["longitude2"] = JSON.stringify(longitude2);
+                      searchData["pageNumber"] = JSON.stringify(pageNumber);
+                      searchData["pageSize"] = JSON.stringify(pageSize);
+                      searchData["sortField"] = JSON.stringify(sortField);
+                      searchData["sortDirection"] = JSON.stringify(sortDirection);
+
+                      searchData["searchAddress"] = JSON.stringify(searchAddress);
+                      searchData["purpose"] = JSON.stringify(purpose);
+                      searchData["type"] = JSON.stringify(type);
+                      searchData["minArea"] = JSON.stringify(minArea);
+                      searchData["maxArea"] = JSON.stringify(maxArea);
+                      searchData["availableFrom"] = JSON.stringify(availableFrom);
+
+
+                      $.ajax({
+                        type : "GET",
+                        contentType : "application/json; charset=utf-8",
+                        url : url,
+                        data :searchData,
+                        cache : false,
+                        timeout : 600000,
+
+                        beforeSend: function() {
+                          console.log(searchData);
+                          document.getElementById("property-container").style.visibility = "hidden";
+                        },
+
+                        success: function (data) {
+                          alert("border change success")
+                          $("#property-list").html(data);
+
+                        },
+                        error:function (errorData) {
+
+                          console.log('errroroor')
+                          console.log(errorData)
+                        }
+                      });
+
+                    });
+
+
+
+
+                });
+
+            </script>
+
+
+            <script type="text/javascript" th:inline="javascript">
+                var geoObjectsQuery;
+                var map;
+                ymaps.ready(['Map', 'geoQuery'])
+                    .then(function() {
+                        map = new ymaps.Map('property-listing-map2', {
+                            center: [51.0267, 7.5693],
+                            zoom: 9,
+                            controls: ['zoomControl']
+                        });
+                        clusterer = new ymaps.Clusterer({
+                            preset: 'islands#invertedVioletClusterIcons',
+                            clusterHideIconOnBalloonOpen: false,
+                            geoObjectHideIconOnBalloonOpen: false,
+                        });
+
+                        clusterer.events
+                            .add(['mouseenter', 'mouseleave'], function (e) {
+                                var target = e.get('target'),
+                                    type = e.get('type');
+                                if (typeof target.getGeoObjects != 'undefined') {
+                                    // An event occurred on the cluster.
+                                    if (type == 'mouseenter') {
+                                        target.options.set('preset', 'islands#invertedPinkClusterIcons');
+                                    } else {
+                                        target.options.set('preset', 'islands#invertedVioletClusterIcons');
+                                    }
+                                } else {
+                                    // An event took place on the geo object.
+                                    if (type == 'mouseenter') {
+                                        target.options.set('preset', 'islands#pinkIcon');
+                                    } else {
+                                        target.options.set('preset', 'islands#violetIcon');
+                                    }
+                                }
+                            });
+
+
+                        var getPointData = function (index, get_url, picture, price, purpose, featured, title, house_number, street, city, region, country, size, bedroom, bathroom, garage) {
+                                var url ="/rest/loadCoordinates";
+
+
+
+                                return {
+                                    balloonContentBody: "<div>Ballon</div>"
+                                  ""'<div class="property_item heading_space">' +
+                                          '                   <div class="image">' +
+                                          '                       <a href="'+get_url+'"  target="_blank"><img src="" alt="latest property" class="img-responsive"></a>' +
+                                          '                    <div class="price clearfix">' +
+                                          '                       <span class="tag pull-right">€'+price+' Pro Monat</span>' +
+                                          '                   </div>' +
+                                          '                       <span class="tag_t">'+purpose+'</span>' +
+                                          '                       <span class="tag_l">'+featured+'</span>' +
+                                          '                   </div>  ' +
+                                          '                   <div class="proerty_content">' +
+                                          '                       <div class="proerty_text">  ' +
+                                          '                           <h3 class="captlize"><a href="#.">Park Avenue Apartment</a></h3> ' +
+                                          '                           <p>45 Regent Street, London, UK</p> ' +
+                                          '                       </div> ' +
+                                          '                       <div class="property_meta transparent"> ' +
+                                          '                           <span><i class="icon-select-an-objecto-tool"></i>'+size+' m²</span> ' +
+                                          '                           <span><i class="icon-bed"></i>'+bedroom+' Zimmer</span> ' +
+                                          '                           <span><i class="icon-safety-shower"></i>'+bathroom+' Bad</span>  ' +
+                                          '                        </div>  ' +
+                                          '                        <div class="property_meta transparent bottom30">   ' +
+                                          '                               <span><i class="icon-old-television"></i>TV Lounge</span>      ' +
+                                          '                               <span><i class="icon-garage"></i>'+garage+' Garage</span>  ' +
+                                          '                                 <span></span>               ' +
+                                          '                       </div> ' +
+                                          '                       <div class="favroute clearfix"> ' +
+                                          '                            <p class="pull-md-left">5 Days ago &nbsp; <i class="icon-calendar2"></i></p>' +
+                                          '                                <ul class="pull-right">  <li><a href="javascript:void(0)"><i class="icon-like"></i></a></li> <li><a href="#one" class="share_expender" data-toggle="collapse"><i class="icon-share3"></i></a></li></ul> </div><div class="toggle_share collapse" id="one"> <ul><li><a href="javascript:void(0)" class="facebook"><i class="icon-facebook-1"></i> Facebook</a></li><li><a href="javascript:void(0)" class="twitter"><i class="icon-twitter-1"></i> Twitter</a></li><li><a href="javascript:void(0)" class="vimo"><i class="icon-vimeo3"></i> Vimeo</a></li></ul>    </div></div></div>',
+                                    clusterCaption: '<div id='+index+' >Immobilien </div><strong></strong>'
+                                };
+                            },
+                            getPointOptions = function () {
+                                return {
+                                    preset: 'islands#violetIcon'
+                                };
+                            },
+
+                            geoObjects = [];
+
+                        var v=-1;
+                        /*[# th:each="n : ${allProperties}"]*/
+
+                        // var lat=parseFloat("[(${n['address']['latitude']})]");
+                        // var lon=parseFloat("[(${n['address']['longitude']})]");
+                        geoObjects[v] = new ymaps.Placemark(["[(${n['address']['latitude']})]", "[(${n['address']['longitude']})]"], getPointData("[(${n['id']})]", "/view/[(${n['id']})]", "/view/[(${n['id']})]", "[(${n['price']})]", "[(${n['purpose']})]",
+                            "[(${n['featured']})]", "[(${n['title']})]",  "[(${n['featured']})]", "[(${n['address']['houseNumber']})]",
+                            "[(${n['address']['street']})]", "[(${n['address']['city']})]", "[(${n['address']['region']})]",
+                            "[(${n['address']['country']})]", "[(${n['size']})]", "[(${n['bedroom']})]",
+                            "[(${n['bathroom']})]",  "[(${n['garage']})]"), getPointOptions());
+                        v++;
+
+
+                        /*[/]*/
+
+
+                        clusterer.add(geoObjects);
+                        map.geoObjects.add(clusterer);
+
+                        map.setBounds(clusterer.getBounds(), {
+                            checkZoomRange: true
+                        });
+
+                        geoObjectsQuery = ymaps.geoQuery(geoObjects);
+
+
+                        map.events.add('boundschange', function() {
+                            var url = "{% url 'rentals:ajax_load_coordinates' %}";
+                            var query=document.getElementById('searchQuery').value;
+                            var min_bed=document.getElementById('min_bed').value;
+                            var location=document.getElementById('address').value;
+                            var min_bath=document.getElementById('min_bath').value;
+                            var min_area=document.getElementById('min_area').value;
+                            var max_area=document.getElementById('max_area').value;
+                            var min_price=document.getElementById('min_price').value;
+                            var max_price=document.getElementById('max_price').value;
+
+                            var e=document.getElementById("category");
+                            var p = document.getElementById("purpose");
+                            var property_purpose = p.options[p.selectedIndex].value;
+                            var property_category = e.options[e.selectedIndex].value;
+
+
+
+                            var borders=map.getBounds();
+                            // $.ajax({
+                            //     method: "GET",                       // initialize an AJAX request
+                            //     url: url,
+                            //
+                            //     contentType: 'application/json; charset=utf-8',
+                            //     data: {
+                            //         'borders': JSON.stringify(borders),
+                            //         'query':query,
+                            //         'min_bed':min_bed,
+                            //         'min_bath':min_bath,
+                            //         'min_area':min_area,
+                            //         'max_area':max_area,
+                            //         'min_price':min_price,
+                            //         'max_price':max_price,
+                            //         'location':location,
+                            //         'property_category':property_category,
+                            //         'property_purpose':property_purpose,
+                            //         'all_form':$('#search_form').serialize(),
+                            //
+                            //     },
+                            //
+                            //     beforeSend: function() {
+                            //         document.getElementById("property-container").style.visibility = "hidden";
+                            //     },
+                            //
+                            //     success: function (data) {
+                            //         $("#property-list").html(data);
+                            //
+                            //     },
+                            //     error:function (errorData) {
+                            //
+                            //         console.log('errroroor')
+                            //     }
+                            // });
+
+                            // $(document).on('click','.pager li',function (e) {
+                            //
+                            //
+                            //
+                            //     var query=document.getElementById('query').value;
+                            //     var min_bed=document.getElementById('min_bed').value;
+                            //     var location=document.getElementById('location').value;
+                            //     var min_bath=document.getElementById('min_bath').value;
+                            //     var min_area=document.getElementById('min_area').value;
+                            //     var max_area=document.getElementById('max_area').value;
+                            //     var min_price=document.getElementById('min_price').value;
+                            //     var max_price=document.getElementById('max_price').value;
+                            //
+                            //     var e=document.getElementById("category");
+                            //     var p = document.getElementById("purpose");
+                            //     var property_purpose = p.options[p.selectedIndex].value;
+                            //     var property_category = e.options[e.selectedIndex].value;
+                            //     var val =$(this).data('id');
+                            //     $.ajax({
+                            //         method: "GET",                       // initialize an AJAX request
+                            //         url: url,
+                            //         async:false,
+                            //         contentType: 'application/json; charset=utf-8',
+                            //         data: {
+                            //             'borders': JSON.stringify(borders),
+                            //             'page_n':val,
+                            //             'query':query,
+                            //             'min_bed':min_bed,
+                            //             'min_bath':min_bath,
+                            //             'min_area':min_area,
+                            //             'max_area':max_area,
+                            //             'min_price':min_price,
+                            //             'max_price':max_price,
+                            //             'location':location,
+                            //             'property_category':property_category,
+                            //             'property_purpose':property_purpose,
+                            //         },
+                            //
+                            //         success: function (data) {
+                            //             $("#property-list").html(data);
+                            //         },
+                            //         error:function (errorData) {
+                            //
+                            //             console.log('errroroor')
+                            //         }
+                            //     });
+                            //
+                            // });
+
+
+
+
+                        });
+                    })
+                    .catch(console.error);
+
+
+                function get_property(id) {
+                    // var url ="{% url 'rentals:getbyid_property' %}"
+                    // $.ajax({
+                    //     method: "GET",                       // initialize an AJAX request
+                    //     url: url,
+                    //
+                    //     contentType: 'application/json; charset=utf-8',
+                    //     data: {
+                    //         'pk':id,
+                    //     },
+                    //
+                    //     success: function (data) {
+                    //         $("#property"+id).html(data);
+                    //         return data
+                    //     },
+                    //     error:function (errorData) {
+                    //
+                    //         console.log('errroroor')
+                    //     }
+                    // });
+                }
+
+
+            </script>
+
+        </div>
+
+      </div>
+    </div>
+</section>
+
+
+
+
+
+
+<style type="text/css">
+  #map {
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+  }
+
+  #visible {
+    display: inline-block;
+    width: 150px;
+    height: 300px;
+    overflow-y: scroll;
+  }
+</style>>
+
+<!-- Listing end -->
+
+
+
+<!--Footer-->
+  <div th:insert="fragments/frontoffice/footer::footer"></div>
+
+
+</body>
+
+</html>
+
