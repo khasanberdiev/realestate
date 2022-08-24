@@ -1,4 +1,5 @@
 FROM openjdk:17-jre-slim as builder
+EXPOSE 8080
 WORKDIR application
 ADD maven/${project.build.finalName}.jar ./
 RUN java -Djarmode=layertools -jar ${project.build.finalName}.jar extract
