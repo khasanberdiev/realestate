@@ -159,7 +159,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-         <fileName>realestate</fileName>
+         <finalName>realestate</finalName>
     </build> 
    
  
