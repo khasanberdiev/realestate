@@ -1,18 +1,18 @@
-version: '20'
-services:
-    app:
-        container_name: estate_docker_jenkins
-        image: estate_docker_jenkins
-        build: ./
-        ports:
-         -"8080:8080"
-        depends_on:
-         - postgresql
-        postgresql:
-          image: postgres
-          ports: 
-            -"5432:5432"
-          environment: 
-            -POSTGRES_PASSWORD=123
-            -POSTGRES_USER=postgres
-            -POSTGRES_DB=postgres
+# version: '20'
+# services:
+#     app:
+#         container_name: estate_docker_jenkins
+#         image: estate_docker_jenkins
+#         build: ./
+#         ports:
+#          -"8080:8080"
+#         depends_on:
+#          - postgresql
+#         postgresql:
+#           image: postgres
+#           ports: 
+#             -"5432:5432"
+#           environment: 
+#             -POSTGRES_PASSWORD=123
+#             -POSTGRES_USER=postgres
+#             -POSTGRES_DB=postgres

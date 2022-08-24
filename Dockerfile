@@ -1,6 +1,6 @@
 FROM openjdk:17-jre-slim as builder
 EXPOSE 8080
-add target/realestate.jar realestate.jar
+ADD target/realestate.jar realestate.jar
 ENTRYPOINT [ "java", "-jar", "/realestate.jar" ]
 # WORKDIR application
 # ADD maven/${project.build.finalName}.jar ./
