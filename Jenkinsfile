@@ -1,37 +1,50 @@
-pipeline {
-  // Assign to docker agent(s) label, could also be 'any'
-  agent {
-    label 'docker' 
-  }
-
-  stages {
-    stage('Docker node test') {
-      agent {
-        docker {
-          // Set both label and image
-          label 'docker'
-          image 'node:7-alpine'
-          args '--name docker-node' // list any args
+pipeline{
+    agent none
+    stages{
+        stage('Build'){
+            agent{docker, 'maven:3-alpine'}
+            steps{
+                echo 'hello maven'
+                sh 'mvn -B -DskipTests clean package'
+            }
         }
-      }
-      steps {
-        // Steps run in node:7-alpine docker container on docker agent
-        sh 'node --version'
-      }
-    }
-
-    stage('Docker maven test') {
-      agent {
-        docker {
-          // Set both label and image
-          label 'docker'
-          image 'maven:3-alpine'
+        stage('Run'){
+            agent {docker 'openjdk:17-jre'}
+            steps {
+                echo 'hello jdk'
+                sh 'java -jar /realestate.jar'
+            }
         }
-      }
-      steps {
-        // Steps run in maven:3-alpine docker container on docker agent
-        sh 'mvn --version'
-      }
     }
-  }
-} 
+}
+
+
+// node {
+
+//    stage('Clone Repository') {
+//         // Get some code from a GitHub repository
+//         git 'https://github.com/khasanberdiev/realestate.git'
+    
+//    }
+//    stage('Build Maven Image') {
+//         docker.build("maven-build")
+//    }
+   
+//    stage('Run Maven Container') {
+       
+//         //Remove maven-build-container if it exists
+//         sh " docker rm -f maven-build-container"
+        
+//         //Run maven image
+//         sh "docker run --rm --name maven-build-container maven-build"
+//    }
+   
+//    stage('Deploy Spring Boot Application') {
+        
+//          //Remove maven-build-container if it exists
+//         sh " docker rm -f java-deploy-container"
+       
+//         sh "docker run --name java-deploy-container --volumes-from maven-build-container -d -p 8080:8080 denisdbell/petclinic-deploy"
+//    }
+
+// }
