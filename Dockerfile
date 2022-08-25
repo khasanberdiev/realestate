@@ -1,5 +1,5 @@
 # FROM openjdk:17-jre-slim as builder
-FROM openjdk:17
+FROM openjdk:17 as builder
 EXPOSE 8080
 ADD target/realestate.jar realestate.jar
 ENTRYPOINT [ "java", "-jar", "/realestate.jar" ]
